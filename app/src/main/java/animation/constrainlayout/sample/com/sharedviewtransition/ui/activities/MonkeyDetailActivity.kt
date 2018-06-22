@@ -3,11 +3,8 @@ package animation.constrainlayout.sample.com.sharedviewtransition.ui.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.constraint.ConstraintSet
-import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.support.v7.app.AppCompatActivity
-import android.transition.ChangeBounds
-import android.transition.TransitionManager
+import android.transition.Slide
 import animation.constrainlayout.sample.com.sharedviewtransition.R
 import animation.constrainlayout.sample.com.sharedviewtransition.domain.datasource.MonkeyProvider
 import animation.constrainlayout.sample.com.sharedviewtransition.domain.model.Monkey
@@ -30,7 +27,6 @@ class MonkeyDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monkey_detail)
         bindMonkey(MonkeyProvider().findById(intent.getIntExtra(ID, -1)))
-        configureAnimation()
     }
 
     private fun bindMonkey(monkey: Monkey?) {
@@ -40,26 +36,5 @@ class MonkeyDetailActivity : AppCompatActivity() {
         textView_subtitle.text = monkey.location
         textView_description.text = monkey.details
         imageView.transitionName = monkey.name
-    }
-
-
-    private fun configureAnimation() {
-        var endConstraintSetApplied = false
-
-        val transition = ChangeBounds()
-        transition.interpolator = FastOutSlowInInterpolator()
-
-        val startConstraintSet = ConstraintSet()
-        startConstraintSet.clone(constraintLayout)
-
-        val endConstraintSet = ConstraintSet()
-        endConstraintSet.clone(this, R.layout.activity_monkey_detail_ekf)
-
-        constraintLayout.setOnClickListener {
-            TransitionManager.beginDelayedTransition(constraintLayout, transition)
-            val constraint = if (endConstraintSetApplied) startConstraintSet else endConstraintSet
-            constraint.applyTo(constraintLayout)
-            endConstraintSetApplied = !endConstraintSetApplied
-        }
     }
 }
