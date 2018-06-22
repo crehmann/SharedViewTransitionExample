@@ -1,25 +1,14 @@
 package animation.constrainlayout.sample.com.sharedviewtransition.domain.datasource
 
 import animation.constrainlayout.sample.com.sharedviewtransition.domain.model.Monkey
+import com.google.gson.Gson
 
-class MonkeyProvider() {
-    private val monkeys = arrayListOf(
-            Monkey(1,
-                    "Baboon",
-                    "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-                    "Africa & Asia",
-                    "http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg",
-                    "http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg"),
-            Monkey(2,
-                    "Capuchin Monkey",
-                    "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
-                    "Central & South America",
-                    "http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg",
-                    "http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"))
-
+class MonkeyProvider {
+    private val monkeyJson = "[ { \"id\":1, \"name\":\"Baboon\", \"location\":\"Africa & Asia\", \"details\":\"Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Portrait_Of_A_Baboon.jpg/314px-Portrait_Of_A_Baboon.jpg\", \"Population\":10000 }, { \"id\":2, \"name\":\"Capuchin Monkey\", \"location\":\"Central & South America\", \"details\":\"The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/400px-Capuchin_Costa_Rica.jpg\", \"Population\":23000 }, { \"id\":3, \"name\":\"Blue Monkey\", \"location\":\"Central and East Africa\", \"details\":\"The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/8/83/BlueMonkey.jpg/420px-BlueMonkey.jpg\", \"Population\":12000 }, { \"id\":4, \"name\":\"Squirrel Monkey\", \"location\":\"Central & South America\", \"details\":\"The squirrel monkeys are the New World monkeys of the genus Saimiri. They are the only genus in the subfamily Saimirinae. The name of the genus Saimiri is of Tupi origin, and was also used as an English name by early researchers.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Saimiri_sciureus-1_Luc_Viatour.jpg/420px-Saimiri_sciureus-1_Luc_Viatour.jpg\", \"Population\":11000 }, { \"id\":5, \"name\":\"Golden Lion Tamarin\", \"location\":\"Brazil\", \"details\":\"The golden lion tamarin also known as the golden marmoset, is a small New World monkey of the family Callitrichidae.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Golden_lion_tamarin_portrait3.jpg/420px-Golden_lion_tamarin_portrait3.jpg\", \"Population\":19000 }, { \"id\":6, \"name\":\"Howler Monkey\", \"location\":\"South America\", \"details\":\"Howler monkeys are among the largest of the New World monkeys. Fifteen species are currently recognised. Previously classified in the family Cebidae, they are now placed in the family Atelidae.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Alouatta_guariba.jpg/400px-Alouatta_guariba.jpg\", \"Population\":8000 }, { \"id\":7, \"name\":\"Japanese Macaque\", \"location\":\"Japan\", \"details\":\"The Japanese macaque, is a terrestrial Old World monkey species native to Japan. They are also sometimes known as the snow monkey because they live in areas where snow covers the ground for months each\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Macaca_fuscata_fuscata1.jpg/420px-Macaca_fuscata_fuscata1.jpg\", \"Population\":1000 }, { \"id\":8, \"name\":\"Mandrill\", \"location\":\"Southern Cameroon, Gabon, Equatorial Guinea, and Congo\", \"details\":\"The mandrill is a primate of the Old World monkey family, closely related to the baboons and even more closely to the drill. It is found in southern Cameroon, Gabon, Equatorial Guinea, and Congo.\", \"imageUrl\":\"http://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Mandrill_at_san_francisco_zoo.jpg/420px-Mandrill_at_san_francisco_zoo.jpg\", \"Population\":17000 } ]"
+    private val monkeys = Gson().fromJson(monkeyJson, Array<Monkey>::class.java)
 
     fun getAll(): List<Monkey> {
-        return monkeys
+        return monkeys.toList()
     }
 
     fun findById(id: Int): Monkey? {

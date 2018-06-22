@@ -3,4 +3,6 @@
     android:id="@+id/monkeyList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/padding_normal"
+    android:paddingRight="@dimen/padding_normal"
     android:scrollbars="vertical" />

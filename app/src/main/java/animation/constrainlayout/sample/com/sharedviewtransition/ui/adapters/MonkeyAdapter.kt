@@ -31,7 +31,7 @@ class MonkeyAdapter(private val monkeys: List<Monkey>,
         fun bind(monkey: Monkey) {
             with(monkey) {
                 Picasso.get()
-                        .load(monkey.thumbnailUrl)
+                        .load(monkey.imageUrl)
                         .placeholder(R.drawable.placeholder)
                         .into(containerView.imageView)
                 containerView.textView_name.text = name

@@ -5,6 +5,5 @@ class Monkey(
         val name: String,
         val details: String,
         val location: String,
-        val thumbnailUrl: String,
         val imageUrl: String)
 
